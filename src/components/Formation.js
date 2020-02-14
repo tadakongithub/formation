@@ -1,25 +1,34 @@
 import React from 'react';
-import ChooseType from './ChooseType';
-import Pitch from './Pitch';
-import './Formation.css';
 
 class Formation extends React.Component {
 
     constructor(props){
         super(props);
-        this.handleButtonClick = this.handleButtonClick.bind(this);
-        this.state = {formationType: ""};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.state = {player: ''};
     }
 
-    handleButtonClick(formationType){
-        this.setState({formationType: formationType});
+    handleChange(e){
+        this.setState({player: e.target.value});
+        this.props.handleChange(e.target.value);
+    }
+
+    handleBlur(){
+        this.props.handleBlur(this.state.player);
+    }
+
+    handleFocus(e){
+        this.props.handleFocus(e.target.value);
     }
 
     render(){
-        return(
-            <div className="formation-container">
-                <ChooseType handleButtonClick={this.handleButtonClick}/>
-                <Pitch formationType={this.state.formationType} />
+        return (
+            <div>
+                <input type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                <input type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                <input type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
             </div>
         )
     }
