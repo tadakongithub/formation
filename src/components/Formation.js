@@ -49,23 +49,56 @@ class Formation extends React.Component {
         return (
             <div id="formation-container">
                 <div className="top">
-                    <input id="n1" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n2" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n3" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n1" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n2" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n3" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
                 </div>
                 <div className="mid">
-                    <input id="n4" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n5" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n6" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n4" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n5" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n6" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
                 </div>
                 <div className="defend">
-                    <input id="n7" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n8" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n9" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                    <input id="n10" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n7" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n8" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n9" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n10" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
                 </div>
                 <div className="keeper">
-                    <input id="n11" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    <div className="player-container">
+                        <i className="user icon"></i>
+                        <input id="n11" type="text" onFocus={this.handleFocus} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                    </div>
                 </div>
             </div>
         )
