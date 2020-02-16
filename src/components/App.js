@@ -11,7 +11,14 @@ class App extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
-        this.state = {members: [], typedPlayer: '', formationPlayers: [], duplicateCell: 'n0'};
+        this.state = {
+            members: [], 
+            typedPlayer: '', 
+            formationPlayers: [], 
+            duplicateCell: 'n0', 
+            duplicateValue: '',
+            deleteCell: 'n0'
+        };
     }
 
     handleSubmit(newMember){
@@ -25,11 +32,17 @@ class App extends React.Component{
     }
 
     handleBlur(player, duplicateCell){
-        if(!this.state.formationPlayers.includes(player)){
-            this.setState({formationPlayers: this.state.formationPlayers.concat(player)});
+        if(!this.state.members.includes(player)){
+            this.setState({deleteCell: duplicateCell});
         } else {
-            this.setState({duplicateCell: duplicateCell});
+            if(!this.state.formationPlayers.includes(player)){
+                this.setState({formationPlayers: this.state.formationPlayers.concat(player)});
+            } else {
+                this.setState({duplicateCell: duplicateCell});
+                this.setState({duplicateValue: player});
+            }
         }
+        this.setState({typedPlayer: ''});
     }
 
     handleFocus(player){
@@ -41,13 +54,15 @@ class App extends React.Component{
         }
         this.setState({typedPlayer: player});
         this.setState({duplicateCell: ""});
+        this.setState({deleteCell: ""});
     }
 
     render(){
         return (
             <div className="app-container">
                 <Formation handleChange={this.handleChange} handleBlur={this.handleBlur} 
-                handleFocus={this.handleFocus} duplicateCell={this.state.duplicateCell}/>
+                handleFocus={this.handleFocus} duplicateCell={this.state.duplicateCell}
+                duplicateValue={this.state.duplicateValue} deleteCell={this.state.deleteCell}/>
                 <Member handleSubmit={this.handleSubmit} members={this.state.members} typedPlayer={this.state.typedPlayer}
                 formationPlayers={this.state.formationPlayers}/>
             </div>

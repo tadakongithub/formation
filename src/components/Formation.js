@@ -13,8 +13,19 @@ class Formation extends React.Component {
 
     componentDidUpdate(){
         var arr = ["n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8", "n9", "n10", "n11"];
+        if(arr.includes(this.props.deleteCell)){
+            document.getElementById(this.props.deleteCell).value = '';
+        }
         if(arr.includes(this.props.duplicateCell)){
             document.getElementById(this.props.duplicateCell).value = '';
+            var inputAll = document.querySelectorAll("input[type='text']");
+            for(var i = 0 ; i < inputAll.length ; i++){
+                if(inputAll[i].value === this.props.duplicateValue){
+                    inputAll[i].value = '';
+                    break;
+                }
+            }
+            document.getElementById(this.props.duplicateCell).value = this.props.duplicateValue;
         }
     }
 
