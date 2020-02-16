@@ -1,6 +1,7 @@
 import React from 'react';
 import Formation from './Formation';
 import Member from './Member';
+import './App.css';
 
 class App extends React.Component{
     
@@ -10,19 +11,25 @@ class App extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
-        this.state = {members: [], typedPlayer: '', formationPlayers: []};
+        this.state = {members: [], typedPlayer: '', formationPlayers: [], duplicateCell: 'n0'};
     }
 
     handleSubmit(newMember){
-        this.setState({members: this.state.members.concat(newMember)});
+        if(!this.state.members.includes(newMember)){
+            this.setState({members: this.state.members.concat(newMember)});
+        }
     }
 
     handleChange(typedPlayer){
         this.setState({typedPlayer: typedPlayer})
     }
 
-    handleBlur(player){
-        this.setState({formationPlayers: this.state.formationPlayers.concat(player)});
+    handleBlur(player, duplicateCell){
+        if(!this.state.formationPlayers.includes(player)){
+            this.setState({formationPlayers: this.state.formationPlayers.concat(player)});
+        } else {
+            this.setState({duplicateCell: duplicateCell});
+        }
     }
 
     handleFocus(player){
@@ -32,12 +39,15 @@ class App extends React.Component{
             arr.splice(index, 1);
             this.setState({formationPlayers: arr});
         }
+        this.setState({typedPlayer: player});
+        this.setState({duplicateCell: ""});
     }
 
     render(){
         return (
-            <div>
-                <Formation handleChange={this.handleChange} handleBlur={this.handleBlur} handleFocus={this.handleFocus}/>
+            <div className="app-container">
+                <Formation handleChange={this.handleChange} handleBlur={this.handleBlur} 
+                handleFocus={this.handleFocus} duplicateCell={this.state.duplicateCell}/>
                 <Member handleSubmit={this.handleSubmit} members={this.state.members} typedPlayer={this.state.typedPlayer}
                 formationPlayers={this.state.formationPlayers}/>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Member.css';
 
 class Member extends React.Component {
 
@@ -25,11 +26,13 @@ class Member extends React.Component {
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.newPlayer} onChange={this.handleChange}/>
-                    <input type="submit" value="Submit"/>
+                <form onSubmit={this.handleSubmit} className="ui form">
+                    <div className="field">
+                        <input type="text" value={this.state.newPlayer} onChange={this.handleChange}
+                        placeholder="Create a list of players present today"/>
+                    </div>
                 </form>
-                <div>
+                <div className="member-list">
                     {members.map(eachPlayer => {
                         if(eachPlayer === this.props.typedPlayer || this.props.formationPlayers.some((player)=>player===eachPlayer)){
                             return <div style={{color: "green"}}>{eachPlayer}</div>
