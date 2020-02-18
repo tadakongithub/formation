@@ -5,16 +5,24 @@
     justify-content: space-around;
     position: relative;
     overflow: hidden;
+    background: repeating-linear-gradient( 
+            to bottom,
+            rgba(21, 184, 0, 0.877),
+            rgba(21, 184, 0, 0.877) 100px,
+            rgba(50, 177, 24, 0.726) 100px,
+            rgba(50, 177, 24, 0.726) 200px);
+            height: 100%;
+            width: 100%;
 }
-
+/*
 #formation-container::before{
     content: "";
-    background: url("../img/soccer_field.png") 0 0 repeat;
+    background: url("../img/soccer_field.jpg") 0 0 repeat;
     position: absolute;
-    width: 100%;
+    width: 300%;
     height: 100%;
     z-index: -1;
-}
+}*/
 
 #n1, #n2, #n3, #n4, #n5, #n6, #n7, #n8, #n9, #n10, #n11{
     display: inline-block;

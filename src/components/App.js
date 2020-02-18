@@ -1,6 +1,7 @@
 import React from 'react';
 import Formation from './Formation';
 import Member from './Member';
+import Modal from './Modal';
 import './App.css';
 
 class App extends React.Component{
@@ -65,6 +66,7 @@ class App extends React.Component{
                 duplicateValue={this.state.duplicateValue} deleteCell={this.state.deleteCell}/>
                 <Member handleSubmit={this.handleSubmit} members={this.state.members} typedPlayer={this.state.typedPlayer}
                 formationPlayers={this.state.formationPlayers}/>
+                <Modal />
             </div>
         )
     }
