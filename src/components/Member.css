@@ -2,3 +2,22 @@
     text-align: center;
 }
 
+.in-formation{
+    color: green;
+}
+
+.out-of-formation{
+    color: rgb(255, 115, 0)
+}
+
+.each-player{
+    display: inline-block;
+}
+
+.each-player-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+

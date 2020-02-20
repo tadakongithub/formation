@@ -27,6 +27,12 @@ class Formation extends React.Component {
             }
             document.getElementById(this.props.duplicateCell).value = this.props.duplicateValue;
         }
+        var inputAll = document.querySelectorAll("input[type='text']");
+        for(var i = 0 ; i < inputAll.length ; i++){
+            if(inputAll[i].value === this.props.memberToDelete){
+                inputAll[i].value = '';
+            }
+        }
     }
 
     handleChange(e){

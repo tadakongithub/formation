@@ -7,6 +7,7 @@ class Member extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.state = {newPlayer: ''};
     }
 
@@ -19,6 +20,11 @@ class Member extends React.Component {
         this.props.handleSubmit(this.state.newPlayer);
         this.setState({newPlayer: ''});
     }
+
+    handleClick(e){
+        this.props.deleteClick(e.target.getAttribute('id'));
+    }
+
 
     render(){
 
@@ -35,9 +41,23 @@ class Member extends React.Component {
                 <div className="member-list">
                     {members.map(eachPlayer => {
                         if(eachPlayer === this.props.typedPlayer || this.props.formationPlayers.some((player)=>player===eachPlayer)){
-                            return <div style={{color: "green"}}>{eachPlayer}</div>
+                            return (
+                                <div className="each-player-container">
+                                    <div className="in-formation each-player">{eachPlayer}</div>
+                                    <div className="delete-container">
+                                        <button className="mini ui orange button" id={eachPlayer} onClick={this.handleClick}>Delete</button>
+                                    </div>
+                                </div>
+                            )
                         } else {
-                            return <div style={{color: "red"}}>{eachPlayer}</div>
+                            return (
+                                <div className="each-player-container">
+                                    <div className="out-of-formation each-player">{eachPlayer}</div>
+                                    <div className="delete-container">
+                                        <button className="mini ui orange button" id={eachPlayer} onClick={this.handleClick}>Delete</button>
+                                    </div>
+                                </div>
+                            )
                         }
                     })}
                 </div>

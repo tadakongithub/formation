@@ -14,15 +14,6 @@
             height: 100%;
             width: 100%;
 }
-/*
-#formation-container::before{
-    content: "";
-    background: url("../img/soccer_field.jpg") 0 0 repeat;
-    position: absolute;
-    width: 300%;
-    height: 100%;
-    z-index: -1;
-}*/
 
 #n1, #n2, #n3, #n4, #n5, #n6, #n7, #n8, #n9, #n10, #n11{
     display: inline-block;
@@ -40,6 +31,7 @@
     display: inline-block;
     width: 150px;
     text-align: center;
+    margin: auto 20px auto;
 }
 
 .user.icon{

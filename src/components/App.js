@@ -12,13 +12,16 @@ class App extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.handleFocus = this.handleFocus.bind(this);
+        this.deleteClick = this.deleteClick.bind(this);
+        this.replaceMember = this.replaceMember.bind(this);
         this.state = {
             members: [], 
             typedPlayer: '', 
             formationPlayers: [], 
             duplicateCell: 'n0', 
             duplicateValue: '',
-            deleteCell: 'n0'
+            deleteCell: 'n0',
+            memberToDelete: ''
         };
     }
 
@@ -58,14 +61,40 @@ class App extends React.Component{
         this.setState({deleteCell: ""});
     }
 
+    deleteClick(memberToDelete){
+        var array = [...this.state.members];
+        var index = array.indexOf(memberToDelete);
+        if(index !== -1){
+            array.splice(index, 1);
+            this.setState({members: array});
+        }
+        var array = [...this.state.formationPlayers];
+        var index = array.indexOf(memberToDelete);
+        if(index !== -1){
+            array.splice(index, 1);
+            this.setState({formationPlayers: array});
+        }
+        this.setState({memberToDelete: memberToDelete});
+    }
+
+    replaceMember(beforeEdit, afterEdit){
+        var array = [...this.state.members];
+        var index = array.indexOf(beforeEdit);
+        if(index !== -1){
+            array[index] = afterEdit;
+            this.setState({members: array});
+        }
+    }
+
     render(){
         return (
             <div className="app-container">
                 <Formation handleChange={this.handleChange} handleBlur={this.handleBlur} 
                 handleFocus={this.handleFocus} duplicateCell={this.state.duplicateCell}
-                duplicateValue={this.state.duplicateValue} deleteCell={this.state.deleteCell}/>
+                duplicateValue={this.state.duplicateValue} deleteCell={this.state.deleteCell} 
+                members={this.state.members} memberToDelete={this.state.memberToDelete}/>
                 <Member handleSubmit={this.handleSubmit} members={this.state.members} typedPlayer={this.state.typedPlayer}
-                formationPlayers={this.state.formationPlayers}/>
+                formationPlayers={this.state.formationPlayers} deleteClick={this.deleteClick} replaceMember={this.replaceMember}/>
                 <Modal />
             </div>
         )
