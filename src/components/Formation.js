@@ -29,7 +29,7 @@ class Formation extends React.Component {
         }
         var inputAll = document.querySelectorAll("input[type='text']");
         for(var i = 0 ; i < inputAll.length ; i++){
-            if(inputAll[i].value === this.props.memberToDelete){
+            if(inputAll[i].value === this.props.memberToDelete || inputAll[i].value === this.props.memberReplaced){
                 inputAll[i].value = '';
             }
         }

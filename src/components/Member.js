@@ -1,69 +1,88 @@
-import React from 'react';
+import React , {useState, useRef} from 'react';
+import Editable from './Editable';
 import './Member.css';
 
-class Member extends React.Component {
+function Member (props) {
 
-    constructor(props){
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.state = {newPlayer: ''};
+    const [newPlayer, setNewPlayer] = useState('');
+    const [memberEdited, setMemberEdited] = useState('');//I don't know how I'm going to use this yet
+    const [memberBeforeEdit, setMemberBeforeEdit] = useState('');
+    const inputRef = useRef();
+
+    const handleChange = (e) => {
+        setNewPlayer(e.target.value);
     }
 
-    handleChange(e){
-        this.setState({newPlayer: e.target.value});
-    }
-
-    handleSubmit(e){
+    const handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.newPlayer);
-        this.setState({newPlayer: ''});
+        props.handleSubmit(newPlayer);
+        setNewPlayer('');
     }
 
-    handleClick(e){
-        this.props.deleteClick(e.target.getAttribute('id'));
+    const handleClick = (e) => {
+        props.deleteClick(e.target.getAttribute('id'));
+    }
+
+    const setCurrentMemberToEdit = member => {
+        setMemberBeforeEdit(member);
+        setMemberEdited(member);
+    }
+
+    const swapOneMember = e => {
+        props.swapOneMember(memberBeforeEdit, memberEdited);
     }
 
 
-    render(){
+    const members = props.members;
 
-        const members = this.props.members;
-
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit} className="ui form">
-                    <div className="field">
-                        <input type="text" value={this.state.newPlayer} onChange={this.handleChange}
+    return (
+        <div>
+            <form onSubmit={handleSubmit} className="ui form">
+                <div className="field">
+                    <input type="text" value={newPlayer} onChange={handleChange}
                         placeholder="Create a list of players present today"/>
-                    </div>
-                </form>
-                <div className="member-list">
-                    {members.map(eachPlayer => {
-                        if(eachPlayer === this.props.typedPlayer || this.props.formationPlayers.some((player)=>player===eachPlayer)){
-                            return (
-                                <div className="each-player-container">
-                                    <div className="in-formation each-player">{eachPlayer}</div>
-                                    <div className="delete-container">
-                                        <button className="mini ui orange button" id={eachPlayer} onClick={this.handleClick}>Delete</button>
-                                    </div>
-                                </div>
-                            )
-                        } else {
-                            return (
-                                <div className="each-player-container">
-                                    <div className="out-of-formation each-player">{eachPlayer}</div>
-                                    <div className="delete-container">
-                                        <button className="mini ui orange button" id={eachPlayer} onClick={this.handleClick}>Delete</button>
-                                    </div>
-                                </div>
-                            )
-                        }
-                    })}
                 </div>
+            </form>
+            
+            <div className="member-list">
+                {members.map(eachPlayer => {
+                    if(eachPlayer === props.typedPlayer || props.formationPlayers.some((player)=>player===eachPlayer)){
+                        return (
+                            <div className="each-player-container">
+                                <div className="in-formation each-player">
+                                    <Editable memberEdited={memberEdited} member={eachPlayer}
+                                    setCurrentMemberToEdit={setCurrentMemberToEdit} childRef={inputRef}>
+                                        <input ref={inputRef} type="text" value={memberEdited}
+                                        onChange={(e)=>setMemberEdited(e.target.value)}
+                                        onBlur={swapOneMember}/>
+                                    </Editable>
+                                </div>
+                                <div className="delete-container">
+                                    <button className="mini ui orange button" id={eachPlayer} onClick={handleClick}>Delete</button>
+                                </div>
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <div className="each-player-container">
+                                <div className="out-of-formation each-player">
+                                    <Editable memberEdited={memberEdited} member={eachPlayer}
+                                    setCurrentMemberToEdit={setCurrentMemberToEdit} childRef={inputRef}>
+                                        <input ref={inputRef} type="text" value={memberEdited}
+                                        onChange={(e)=>setMemberEdited(e.target.value)}
+                                        onBlur={swapOneMember}/>
+                                    </Editable>
+                                </div>
+                                <div className="delete-container">
+                                    <button className="mini ui orange button" id={eachPlayer} onClick={handleClick}>Delete</button>
+                                </div>
+                            </div>
+                        )
+                    }
+                })}
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Member;
