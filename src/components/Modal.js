@@ -9,7 +9,7 @@ class Modal extends React.Component {
                     Before you start
                 </div>
                 <div className="content">
-                    <div>Make sure you add a player to the right hand-side player list before you put her/his name on the formation.</div>
+                    <div>Before you start, make sure you add a player name on the player list on the right-hand side.</div>
                 </div>
                 <div className="actions">
                     <div className="ui positive right labeled icon button">

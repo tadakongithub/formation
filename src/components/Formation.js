@@ -17,15 +17,15 @@ class Formation extends React.Component {
             document.getElementById(this.props.deleteCell).value = '';
         }
         if(arr.includes(this.props.duplicateCell)){
-            document.getElementById(this.props.duplicateCell).value = '';
+            //document.getElementById(this.props.duplicateCell).value = '';
             var inputAll = document.querySelectorAll("input[type='text']");
             for(var i = 0 ; i < inputAll.length ; i++){
-                if(inputAll[i].value === this.props.duplicateValue){
+                if(inputAll[i].value === this.props.duplicateValue && inputAll[i].getAttribute('id') !== this.props.duplicateCell){
                     inputAll[i].value = '';
                     break;
                 }
             }
-            document.getElementById(this.props.duplicateCell).value = this.props.duplicateValue;
+            //document.getElementById(this.props.duplicateCell).value = this.props.duplicateValue;
         }
         var inputAll = document.querySelectorAll("input[type='text']");
         for(var i = 0 ; i < inputAll.length ; i++){
